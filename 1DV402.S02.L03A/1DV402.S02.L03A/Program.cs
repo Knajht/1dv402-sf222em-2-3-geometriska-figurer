@@ -18,14 +18,14 @@ namespace _1DV402.S02.L03A
                 Console.Clear();
                 ViewMenu();
 
+                //Prompts the user if the intended shape is an ellipse or a rectangle, sets it using the enum ShapeType
                 try
                 {
-
                     switch (int.Parse(Console.ReadLine()))
                     {
                         case 0:
                             exit = true;
-                            break;
+                            continue;
                         case 1:
                             type = ShapeType.Ellipse;
                             break;
@@ -39,42 +39,49 @@ namespace _1DV402.S02.L03A
                 catch
                 {
                     Console.BackgroundColor = ConsoleColor.DarkRed;
-                    Console.WriteLine("\nFEL! Ange ett nummer mellan 0 och 2.");
+                    Console.WriteLine("\n FEL! Ange ett nummer mellan 0 och 2.");
                     Console.BackgroundColor = ConsoleColor.DarkBlue;
-                    Console.WriteLine("\nTryck tangent för att fortsätta");
+                    Console.WriteLine("\n Tryck tangent för att fortsätta");
                     Console.ResetColor();
                     Console.CursorVisible = false;
                     Console.ReadKey();
+                    continue;
                 }
 
                 Shape shape = CreateShape(type);
                 ViewShapeDetail(shape);
 
-                Console.WriteLine("\nTryck tangent för att fortsätta");
+                Console.BackgroundColor = ConsoleColor.DarkBlue;
+                Console.WriteLine("\n Tryck tangent för att fortsätta");
                 Console.ResetColor();
                 Console.CursorVisible = false;
                 Console.ReadKey();
-	         
 	        } while (!exit);
-
-
-
-
-
-            
-
-            //Shape shape = new Ellipse;
         }
 
+        /// <summary>
+        /// Creates a new shape of the type specified in the form of enum ShapeType
+        /// </summary>
         private static Shape CreateShape(ShapeType shapeType)
         {
-            //Console.WriteLine(String.Format("Ny Shape av en {0}", shapeType.ToString()));
             switch (shapeType)
             {
                 case ShapeType.Ellipse:
-                    return new Ellipse(10, 20);
+                    Console.BackgroundColor = ConsoleColor.DarkMagenta;
+                    Console.WriteLine("\n");
+                    Console.WriteLine("   =================================   ");
+                    Console.WriteLine("  =             Ellips              =  ");
+                    Console.WriteLine("   =================================   \n");
+                    Console.ResetColor();
+                    return new Ellipse(ReadDoubleGreaterThanZero(" Ange längden: "), ReadDoubleGreaterThanZero(" Ange bredden: "));
                 case ShapeType.Rectangle:
-                    return new Rectangle(20, 40);
+                    Console.BackgroundColor = ConsoleColor.DarkMagenta;
+                    Console.WriteLine("\n");
+                    Console.WriteLine("   =================================   ");
+                    Console.WriteLine("  =            Rektangel            =  ");
+                    Console.WriteLine("   =================================   \n");
+                    Console.ResetColor();
+                    return new Rectangle(ReadDoubleGreaterThanZero(" Ange längden: "), ReadDoubleGreaterThanZero(" Ange bredden: "));
                 default:
                     throw new NotImplementedException();
             }
@@ -97,7 +104,7 @@ namespace _1DV402.S02.L03A
                     return value;
                 }
                 Console.BackgroundColor = ConsoleColor.DarkRed;
-                Console.WriteLine("\nFEL! Ange ett flyttal större än 0.\n");
+                Console.WriteLine("\n FEL! Ange ett flyttal större än 0.\n");
                 Console.ResetColor();
             } while (true);
         }
@@ -107,10 +114,11 @@ namespace _1DV402.S02.L03A
         /// </summary>
         private static void ViewMenu()
         {
-//Menyn i exemplet SecondZoo var så snyggt så jag tog själva "rutan" därifrån.
             Console.BackgroundColor = ConsoleColor.Magenta;
             Console.WriteLine(" ===================================== ");
+            Console.WriteLine(" =                                   = ");
             Console.WriteLine(" =        Geometriska figurer        = ");
+            Console.WriteLine(" =                                   = ");
             Console.WriteLine(" ===================================== ");
             Console.ResetColor();
             Console.WriteLine("\n 0. Avsluta.");
@@ -119,14 +127,20 @@ namespace _1DV402.S02.L03A
             Console.WriteLine("\n======================================");
             Console.Write("\n Ange menyval [0-2]:");
         }
+
+        /// <summary>
+        /// Presents the information of a shape in a very nice way by calling custom ToString() in class Shape
+        /// </summary>
         private static void ViewShapeDetail(Shape shape)
         {
-            Console.BackgroundColor = ConsoleColor.DarkMagenta;
-            Console.WriteLine("DETALJER");
+            Console.BackgroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("");
+            Console.WriteLine("    ===============================    ");
+            Console.WriteLine("  ====         Detaljer          ====  ");
+            Console.WriteLine("    ===============================    \n");
             Console.ResetColor();
             Console.WriteLine(shape.ToString());
             Console.WriteLine("\n======================================");
         }
-
     }
 }

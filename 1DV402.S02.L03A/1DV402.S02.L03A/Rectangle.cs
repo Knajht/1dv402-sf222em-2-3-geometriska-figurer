@@ -8,6 +8,7 @@ namespace _1DV402.S02.L03A
 {
     class Rectangle : Shape
     {
+        //Properties that calculates area and perimeter for a rectangle.
         public override double Area
         {
             get
@@ -23,10 +24,12 @@ namespace _1DV402.S02.L03A
             }
         }
 
+        /// <summary>
+        /// Constructor, calls base (Shape)
+        /// </summary>
         public Rectangle(double length, double width)
             :base(length, width)
         {
-
         }
     }
 }

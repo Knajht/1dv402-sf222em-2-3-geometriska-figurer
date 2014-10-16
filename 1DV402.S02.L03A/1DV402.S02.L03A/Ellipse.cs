@@ -8,6 +8,7 @@ namespace _1DV402.S02.L03A
 {
     class Ellipse : Shape
     {
+        //Properties that calculates area and perimeter for an ellipse.
         public override double Area
         { 
             get
@@ -23,10 +24,12 @@ namespace _1DV402.S02.L03A
             }
         }
 
+        /// <summary>
+        /// Constructor, calls base (Shape)
+        /// </summary>
         public Ellipse(double length, double width)
             :base(length, width)
         {
-
         }
     }
 }
