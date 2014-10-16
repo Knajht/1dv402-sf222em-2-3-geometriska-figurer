@@ -8,8 +8,20 @@ namespace _1DV402.S02.L03A
 {
     class Rectangle : Shape
     {
-        public double Area { get; }
-        public double Width { get; }
+        public override double Area
+        {
+            get
+            {
+                return Length * Width;
+            }
+        }
+        public override double Perimeter
+        {
+            get
+            {
+                return 2 * Length + 2 * Width;
+            }
+        }
 
         public Rectangle(double length, double width)
             :base(length, width)

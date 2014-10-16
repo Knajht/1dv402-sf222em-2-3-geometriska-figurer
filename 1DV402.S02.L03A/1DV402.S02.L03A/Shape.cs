@@ -33,8 +33,8 @@ namespace _1DV402.S02.L03A
                 }
                 _width = value; }
         }
-        public abstract double Area;
-        public abstract double Perimeter;
+        public abstract double Area { get; }
+        public abstract double Perimeter { get; }
 
         protected Shape(double length, double width)
         {
@@ -44,7 +44,9 @@ namespace _1DV402.S02.L03A
 
         public override string ToString()
         {
-            throw new NotImplementedException();
+
+            return String.Format("{0, -7}:{1, 12}\n{2, -7}:{3, 12}\n{4, -7}:{5, 12}\n{6, -7}:{7, 12}\n",
+                "Längd", Length, "Bredd", Width, "Omkrets", Perimeter, "Area", Area);
         }
 
 
